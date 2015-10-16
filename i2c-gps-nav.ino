@@ -1195,6 +1195,13 @@ void blink_sonar_update()
   }
 #endif
 
+#if defined(SONAR)
+  if (i2c_dataset.sonar_distance < 5) {
+      digitalWrite(13, HIGH);   // set the LED on
+      return;
+  }
+#endif
+
   if(_statusled_timer < now) {
     if(lastframe_time+5000 < now) {
       // no gps communication  
